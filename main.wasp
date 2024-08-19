@@ -1,0 +1,26 @@
+app baymax {
+  wasp: {
+    version: "^0.14.0"
+  },
+  title: "baymax",
+  // server: {
+  //   setupFn: import setup from "@src/api"
+  // }
+}
+
+route RootRoute { path: "/", to: MainPage }
+page MainPage {
+  component: import { MainPage } from "@src/MainPage"
+}
+
+query getUsers {
+  // Attention: Even if you use TS and have a queries.ts file, you will still need to import it using the .js extension.
+  fn: import { getUsers } from "@src/service/user.js",
+  entities: [User]
+}
+
+action createUser {
+  fn: import { createUser } from "@src/service/user.js",
+  entities: [User]
+}
+
